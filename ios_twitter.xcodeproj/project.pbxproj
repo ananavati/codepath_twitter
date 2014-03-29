@@ -26,6 +26,8 @@
 		1797994418E69C0000116B3B /* TwitterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1797994218E69C0000116B3B /* TwitterViewController.xib */; };
 		1797994A18E69FCE00116B3B /* Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1797994918E69FCE00116B3B /* Twitter.m */; };
 		1797994E18E6AE3F00116B3B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1797994D18E6AE3F00116B3B /* User.m */; };
+		1797995418E6B8BF00116B3B /* UINavigationBar+UINavigationBarAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 1797995118E6B8BF00116B3B /* UINavigationBar+UINavigationBarAlert.m */; };
+		1797995518E6B8BF00116B3B /* UINavigationBarAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 1797995318E6B8BF00116B3B /* UINavigationBarAlert.m */; };
 		EB5F33B5D13C440E9EE2974C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 946ACE7A4D2A40B1AB9B51CE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +68,10 @@
 		1797994918E69FCE00116B3B /* Twitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Twitter.m; sourceTree = "<group>"; };
 		1797994C18E6AE3F00116B3B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		1797994D18E6AE3F00116B3B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		1797995018E6B8BF00116B3B /* UINavigationBar+UINavigationBarAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+UINavigationBarAlert.h"; sourceTree = "<group>"; };
+		1797995118E6B8BF00116B3B /* UINavigationBar+UINavigationBarAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+UINavigationBarAlert.m"; sourceTree = "<group>"; };
+		1797995218E6B8BF00116B3B /* UINavigationBarAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINavigationBarAlert.h; sourceTree = "<group>"; };
+		1797995318E6B8BF00116B3B /* UINavigationBarAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINavigationBarAlert.m; sourceTree = "<group>"; };
 		946ACE7A4D2A40B1AB9B51CE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -132,6 +138,7 @@
 		1797991118E69AE600116B3B /* ios_twitter */ = {
 			isa = PBXGroup;
 			children = (
+				1797994F18E6B89C00116B3B /* UINavigationBarAlert */,
 				1797994B18E6AE3100116B3B /* Models */,
 				1797994718E69FB700116B3B /* Adapters */,
 				1797994618E69CCA00116B3B /* Xibs */,
@@ -207,6 +214,17 @@
 				1797994D18E6AE3F00116B3B /* User.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		1797994F18E6B89C00116B3B /* UINavigationBarAlert */ = {
+			isa = PBXGroup;
+			children = (
+				1797995018E6B8BF00116B3B /* UINavigationBar+UINavigationBarAlert.h */,
+				1797995118E6B8BF00116B3B /* UINavigationBar+UINavigationBarAlert.m */,
+				1797995218E6B8BF00116B3B /* UINavigationBarAlert.h */,
+				1797995318E6B8BF00116B3B /* UINavigationBarAlert.m */,
+			);
+			name = UINavigationBarAlert;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,7 +363,9 @@
 				1797991C18E69AE600116B3B /* TwitterAppDelegate.m in Sources */,
 				1797994E18E6AE3F00116B3B /* User.m in Sources */,
 				1797991818E69AE600116B3B /* main.m in Sources */,
+				1797995518E6B8BF00116B3B /* UINavigationBarAlert.m in Sources */,
 				1797991F18E69AE600116B3B /* ios_twitter.xcdatamodeld in Sources */,
+				1797995418E6B8BF00116B3B /* UINavigationBar+UINavigationBarAlert.m in Sources */,
 				1797994A18E69FCE00116B3B /* Twitter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
