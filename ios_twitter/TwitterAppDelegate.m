@@ -8,12 +8,30 @@
 
 #import "TwitterAppDelegate.h"
 #import "TwitterViewController.h"
+#import "NSDictionary+BDBOAuth1Manager.h"
+#import "Twitter.h"
+
+@interface TwitterAppDelegate ()
+
+@property (nonatomic, readwrite) Twitter *twitterAdapter;
+
+@end
 
 @implementation TwitterAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+- (id)init
+{
+	self = [super init];
+	if (self) {
+		self.twitterAdapter = [Twitter instance];
+	}
+	
+	return self;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -150,6 +168,24 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [self.twitterAdapter authorizationCallbackURL:url onSuccess:^{
+        NSLog(@"got access token");
+        [self renderRootViewController];
+    }];
+}
+
+- (void) renderRootViewController
+{
+	if ([Twitter isAuthorized]) {
+        NSLog(@"current user authorized");
+        // load the ui table view for tweets list
+	}
+	else {
+        NSLog(@"current user NOT authorized");
+	}
 }
 
 @end

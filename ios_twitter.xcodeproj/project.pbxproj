@@ -25,6 +25,7 @@
 		1797994318E69C0000116B3B /* TwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1797994118E69C0000116B3B /* TwitterViewController.m */; };
 		1797994418E69C0000116B3B /* TwitterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1797994218E69C0000116B3B /* TwitterViewController.xib */; };
 		1797994A18E69FCE00116B3B /* Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1797994918E69FCE00116B3B /* Twitter.m */; };
+		1797994E18E6AE3F00116B3B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1797994D18E6AE3F00116B3B /* User.m */; };
 		EB5F33B5D13C440E9EE2974C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 946ACE7A4D2A40B1AB9B51CE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,8 @@
 		1797994218E69C0000116B3B /* TwitterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwitterViewController.xib; sourceTree = "<group>"; };
 		1797994818E69FCE00116B3B /* Twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Twitter.h; sourceTree = "<group>"; };
 		1797994918E69FCE00116B3B /* Twitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Twitter.m; sourceTree = "<group>"; };
+		1797994C18E6AE3F00116B3B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		1797994D18E6AE3F00116B3B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		946ACE7A4D2A40B1AB9B51CE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -129,6 +132,7 @@
 		1797991118E69AE600116B3B /* ios_twitter */ = {
 			isa = PBXGroup;
 			children = (
+				1797994B18E6AE3100116B3B /* Models */,
 				1797994718E69FB700116B3B /* Adapters */,
 				1797994618E69CCA00116B3B /* Xibs */,
 				1797994518E69CA300116B3B /* View Controllers */,
@@ -194,6 +198,15 @@
 				1797994918E69FCE00116B3B /* Twitter.m */,
 			);
 			name = Adapters;
+			sourceTree = "<group>";
+		};
+		1797994B18E6AE3100116B3B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1797994C18E6AE3F00116B3B /* User.h */,
+				1797994D18E6AE3F00116B3B /* User.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +343,7 @@
 			files = (
 				1797994318E69C0000116B3B /* TwitterViewController.m in Sources */,
 				1797991C18E69AE600116B3B /* TwitterAppDelegate.m in Sources */,
+				1797994E18E6AE3F00116B3B /* User.m in Sources */,
 				1797991818E69AE600116B3B /* main.m in Sources */,
 				1797991F18E69AE600116B3B /* ios_twitter.xcdatamodeld in Sources */,
 				1797994A18E69FCE00116B3B /* Twitter.m in Sources */,

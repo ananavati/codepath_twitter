@@ -40,7 +40,7 @@
 
 - (IBAction)loginButtonTapped:(id)sender
 {
-    
+    [[Twitter instance] login];
 }
 
 @end

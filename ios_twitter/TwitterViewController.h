@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Twitter.h"
 
 @interface TwitterViewController : UIViewController
 
