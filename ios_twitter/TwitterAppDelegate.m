@@ -7,6 +7,7 @@
 //
 
 #import "TwitterAppDelegate.h"
+#import "TwitterViewController.h"
 
 @implementation TwitterAppDelegate
 
@@ -17,7 +18,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    
+    // initialize the nav bar and the view
+    TwitterViewController *view = [[TwitterViewController alloc] init];
+    UINavigationController *navView = [[UINavigationController alloc] initWithRootViewController:view];
+    self.window.rootViewController = navView;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
