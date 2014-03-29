@@ -90,11 +90,16 @@
 													  failure:^(NSError *error) {
 														  NSLog(@"Error: %@", error.localizedDescription);
 														  dispatch_async(dispatch_get_main_queue(), ^{
-															  [[[UIAlertView alloc] initWithTitle:@"Error"
-																						  message:@"!!Could not acquire OAuth access token. Please try again later."
-																						 delegate:self
-																				cancelButtonTitle:@"Dismiss"
-																				otherButtonTitles:nil] show];
+//															  [[[UIAlertView alloc] initWithTitle:@"Error"
+//																						  message:@"!!Could not acquire OAuth access token. Please try again later."
+//																						 delegate:self
+//																				cancelButtonTitle:@"Dismiss"
+//																				otherButtonTitles:nil] show];
+                                                              // show the network error in the navbar alert view
+//                                                              [self.navigationController.navigationBar showAlertWithTitle:@"Network Error"];
+                                                              [[NSNotificationCenter defaultCenter]
+                                                               postNotificationName:@"UserAuthErrorNotification"
+                                                               object:self];
 														  });
 													  }];
 			}

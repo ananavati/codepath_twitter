@@ -8,6 +8,10 @@
 
 #import "User.h"
 
+NSString * const UserDidLoginNotification = @"UserDidLoginNotification";
+NSString * const UserDidLogoutNotification = @"UserDidLogoutNotification";
+NSString * const UserAuthErrorNotification = @"UserAuthErrorNotification";
+
 @implementation User
 
 + (User *)currentUser

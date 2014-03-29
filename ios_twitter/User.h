@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "Twitter.h"
 
+extern NSString *const UserDidLoginNotification;
+extern NSString *const UserDidLogoutNotification;
+extern NSString *const UserAuthErrorNotification;
+
 @interface User : NSObject
 
 @property int userId;

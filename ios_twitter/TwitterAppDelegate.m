@@ -10,6 +10,7 @@
 #import "TwitterViewController.h"
 #import "NSDictionary+BDBOAuth1Manager.h"
 #import "Twitter.h"
+#import "UINavigationBarAlert.h"
 
 @interface TwitterAppDelegate ()
 
@@ -41,6 +42,18 @@
     TwitterViewController *view = [[TwitterViewController alloc] init];
     UINavigationController *navView = [[UINavigationController alloc] initWithRootViewController:view];
     self.window.rootViewController = navView;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(renderRootViewController)
+												 name:UserDidLoginNotification object:nil];
+	
+    [[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(renderRootViewController)
+												 name:UserDidLogoutNotification object:nil];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//											 selector:@selector(renderRootViewController)
+//												 name:UserAuthErrorNotification object:nil];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -185,6 +198,7 @@
 	}
 	else {
         NSLog(@"current user NOT authorized");
+//        [self.window.rootViewController.navigationController.navigationBar showAlertWithTitle:@"Auth Error: Please authorize the app"];
 	}
 }
 
