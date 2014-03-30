@@ -11,6 +11,7 @@
 #import "NSDictionary+BDBOAuth1Manager.h"
 #import "Twitter.h"
 #import "UINavigationBarAlert.h"
+#import "TweetListViewController.h"
 
 @interface TwitterAppDelegate ()
 
@@ -54,6 +55,7 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //											 selector:@selector(renderRootViewController)
 //												 name:UserAuthErrorNotification object:nil];
+    [self renderRootViewController];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -192,14 +194,11 @@
 
 - (void) renderRootViewController
 {
-	if ([Twitter isAuthorized]) {
-        NSLog(@"current user authorized");
-        // load the ui table view for tweets list
-	}
-	else {
-        NSLog(@"current user NOT authorized");
-//        [self.window.rootViewController.navigationController.navigationBar showAlertWithTitle:@"Auth Error: Please authorize the app"];
-	}
+	if ([User currentUser]) {
+        self.window.rootViewController = [[TweetListViewController alloc] init];
+    } else {
+        self.window.rootViewController = [[TweetListViewController alloc] init];
+    }
 }
 
 @end

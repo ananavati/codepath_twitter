@@ -13,6 +13,24 @@ NSString * const UserDidLogoutNotification = @"UserDidLogoutNotification";
 NSString * const UserAuthErrorNotification = @"UserAuthErrorNotification";
 
 @implementation User
++ (User *)userFromJSON:(NSDictionary *)data
+{
+	static dispatch_once_t once;
+    static NSMutableDictionary *users;
+    
+    dispatch_once(&once, ^{
+        users = [[NSMutableDictionary alloc] init];
+    });
+    
+	User *user = [users objectForKey:data[@"id"]];
+    
+	if (!user) {
+		user = [[User alloc] init:data];
+		[users setObject:user forKey:@(user.userId)];
+	}
+    
+	return user;
+}
 
 + (User *)currentUser
 {

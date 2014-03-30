@@ -28,6 +28,11 @@
 		1797994E18E6AE3F00116B3B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1797994D18E6AE3F00116B3B /* User.m */; };
 		1797995418E6B8BF00116B3B /* UINavigationBar+UINavigationBarAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 1797995118E6B8BF00116B3B /* UINavigationBar+UINavigationBarAlert.m */; };
 		1797995518E6B8BF00116B3B /* UINavigationBarAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 1797995318E6B8BF00116B3B /* UINavigationBarAlert.m */; };
+		1797995918E79BE300116B3B /* TweetListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1797995718E79BE300116B3B /* TweetListViewController.m */; };
+		1797995A18E79BE300116B3B /* TweetListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1797995818E79BE300116B3B /* TweetListViewController.xib */; };
+		1797995E18E79D3900116B3B /* TweetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1797995D18E79D3900116B3B /* TweetTableViewCell.xib */; };
+		1797996118E79D4F00116B3B /* TweetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1797996018E79D4F00116B3B /* TweetTableViewCell.m */; };
+		1797996418E7A03000116B3B /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1797996318E7A03000116B3B /* Tweet.m */; };
 		EB5F33B5D13C440E9EE2974C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 946ACE7A4D2A40B1AB9B51CE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +77,14 @@
 		1797995118E6B8BF00116B3B /* UINavigationBar+UINavigationBarAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+UINavigationBarAlert.m"; sourceTree = "<group>"; };
 		1797995218E6B8BF00116B3B /* UINavigationBarAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINavigationBarAlert.h; sourceTree = "<group>"; };
 		1797995318E6B8BF00116B3B /* UINavigationBarAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINavigationBarAlert.m; sourceTree = "<group>"; };
+		1797995618E79BE300116B3B /* TweetListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetListViewController.h; sourceTree = "<group>"; };
+		1797995718E79BE300116B3B /* TweetListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetListViewController.m; sourceTree = "<group>"; };
+		1797995818E79BE300116B3B /* TweetListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetListViewController.xib; sourceTree = "<group>"; };
+		1797995D18E79D3900116B3B /* TweetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetTableViewCell.xib; sourceTree = "<group>"; };
+		1797995F18E79D4F00116B3B /* TweetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetTableViewCell.h; sourceTree = "<group>"; };
+		1797996018E79D4F00116B3B /* TweetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetTableViewCell.m; sourceTree = "<group>"; };
+		1797996218E7A03000116B3B /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
+		1797996318E7A03000116B3B /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
 		946ACE7A4D2A40B1AB9B51CE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -184,8 +197,12 @@
 		1797994518E69CA300116B3B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1797995618E79BE300116B3B /* TweetListViewController.h */,
+				1797995718E79BE300116B3B /* TweetListViewController.m */,
 				1797994018E69C0000116B3B /* TwitterViewController.h */,
 				1797994118E69C0000116B3B /* TwitterViewController.m */,
+				1797995F18E79D4F00116B3B /* TweetTableViewCell.h */,
+				1797996018E79D4F00116B3B /* TweetTableViewCell.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -194,6 +211,8 @@
 			isa = PBXGroup;
 			children = (
 				1797994218E69C0000116B3B /* TwitterViewController.xib */,
+				1797995818E79BE300116B3B /* TweetListViewController.xib */,
+				1797995D18E79D3900116B3B /* TweetTableViewCell.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -212,6 +231,8 @@
 			children = (
 				1797994C18E6AE3F00116B3B /* User.h */,
 				1797994D18E6AE3F00116B3B /* User.m */,
+				1797996218E7A03000116B3B /* Tweet.h */,
+				1797996318E7A03000116B3B /* Tweet.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -305,6 +326,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1797995E18E79D3900116B3B /* TweetTableViewCell.xib in Resources */,
+				1797995A18E79BE300116B3B /* TweetListViewController.xib in Resources */,
 				1797994418E69C0000116B3B /* TwitterViewController.xib in Resources */,
 				1797991618E69AE600116B3B /* InfoPlist.strings in Resources */,
 				1797992118E69AE600116B3B /* Images.xcassets in Resources */,
@@ -359,9 +382,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1797995918E79BE300116B3B /* TweetListViewController.m in Sources */,
 				1797994318E69C0000116B3B /* TwitterViewController.m in Sources */,
 				1797991C18E69AE600116B3B /* TwitterAppDelegate.m in Sources */,
+				1797996118E79D4F00116B3B /* TweetTableViewCell.m in Sources */,
 				1797994E18E6AE3F00116B3B /* User.m in Sources */,
+				1797996418E7A03000116B3B /* Tweet.m in Sources */,
 				1797991818E69AE600116B3B /* main.m in Sources */,
 				1797995518E6B8BF00116B3B /* UINavigationBarAlert.m in Sources */,
 				1797991F18E69AE600116B3B /* ios_twitter.xcdatamodeld in Sources */,

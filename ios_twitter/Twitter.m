@@ -12,6 +12,8 @@
 #define TWITTER_CONSUMER_KEY @"cTfqsGSY9MnZOEqrl01WQ"
 #define TWITTER_CONSUMER_SECRET @"jv0l0i1TcydOgVDS8RjjhS530WDEw85Q94lfFepe8"
 
+static NSString * const accessTokenKey = @"accessTokenKey";
+
 @interface Twitter ()
 
 @property (nonatomic, readwrite) BDBOAuth1RequestOperationManager *requestManager;
@@ -32,9 +34,9 @@
     return instance;
 }
 
-+ (BOOL)isAuthorized
+- (BOOL) isAuthorizedWithAccessToken
 {
-	return [[[Twitter instance] requestManager] isAuthorized];
+    return !![[NSUserDefaults standardUserDefaults] objectForKey:accessTokenKey];
 }
 
 #pragma mark - init
@@ -55,16 +57,22 @@
 
 - (void) login
 {
-    [self.requestManager.requestSerializer removeAccessToken];
-    [self.requestManager fetchRequestTokenWithPath:@"/oauth/request_token" method:@"POST" callbackURL:[NSURL URLWithString:@"codepath-twitter://request"] scope:nil success:^(BDBOAuthToken *requestToken) {
-        NSLog(@"got requestToken");
-
-        
-        NSString *authURL = [NSString stringWithFormat:@"https://api.twitter.com/oauth/authorize?oauth_token=%@", requestToken.token];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:authURL]];
-    } failure:^(NSError *error) {
-        NSLog(@"Error: %@", error.localizedDescription);
-    }];
+    
+    if ([self isAuthorizedWithAccessToken]) {
+        NSLog(@"already authorized");
+        [User currentUser];
+    } else {
+        [self.requestManager.requestSerializer removeAccessToken];
+        [self.requestManager fetchRequestTokenWithPath:@"/oauth/request_token" method:@"POST" callbackURL:[NSURL URLWithString:@"codepath-twitter://request"] scope:nil success:^(BDBOAuthToken *requestToken) {
+            NSLog(@"got requestToken");
+            NSString *authURL = [NSString stringWithFormat:@"https://api.twitter.com/oauth/authorize?oauth_token=%@", requestToken.token];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:authURL]];
+        } failure:^(NSError *error) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }];
+    }
+    
+    
 }
 
 - (BOOL)authorizationCallbackURL:(NSURL *)url onSuccess:(void (^)(void))completion
@@ -78,7 +86,7 @@
 												 requestToken:[BDBOAuthToken tokenWithQueryString:url.query]
 													  success:^(BDBOAuthToken *accessToken) {
 														  NSLog(@"access token %@", accessToken);
-														  [self.requestManager.requestSerializer saveAccessToken:accessToken];
+                                                          [self saveAccessToken:accessToken];
 														  [User currentUser];
                                                           
 														  if (completion) {
@@ -90,13 +98,6 @@
 													  failure:^(NSError *error) {
 														  NSLog(@"Error: %@", error.localizedDescription);
 														  dispatch_async(dispatch_get_main_queue(), ^{
-//															  [[[UIAlertView alloc] initWithTitle:@"Error"
-//																						  message:@"!!Could not acquire OAuth access token. Please try again later."
-//																						 delegate:self
-//																				cancelButtonTitle:@"Dismiss"
-//																				otherButtonTitles:nil] show];
-                                                              // show the network error in the navbar alert view
-//                                                              [self.navigationController.navigationBar showAlertWithTitle:@"Network Error"];
                                                               [[NSNotificationCenter defaultCenter]
                                                                postNotificationName:@"UserAuthErrorNotification"
                                                                object:self];
@@ -109,6 +110,16 @@
 	}
     
 	return NO;
+}
+
+- (void)saveAccessToken:(BDBOAuthToken *)accessToken {
+    if (accessToken) {
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:accessToken];
+        [[NSUserDefaults standardUserDefaults] setObject:data forKey:accessTokenKey];
+    } else {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:accessTokenKey];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 

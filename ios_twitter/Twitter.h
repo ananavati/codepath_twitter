@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BDBOAuth1RequestOperationManager.h"
+#import <BDBOAuth1Manager/BDBOAuth1RequestOperationManager.h>
 #import "NSDictionary+BDBOAuth1Manager.h"
 #import "User.h"
 
 @interface Twitter : BDBOAuth1RequestOperationManager
 
 + (Twitter *)instance;
-+ (BOOL) isAuthorized;
+- (BOOL) isAuthorizedWithAccessToken;
 
 #pragma mark - oauth
 
