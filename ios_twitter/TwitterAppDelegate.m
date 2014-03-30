@@ -195,9 +195,13 @@
 - (void) renderRootViewController
 {
 	if ([User currentUser]) {
-        self.window.rootViewController = [[TweetListViewController alloc] init];
+        TweetListViewController *view = [[TweetListViewController alloc] init];
+        UINavigationController *navView = [[UINavigationController alloc] initWithRootViewController:view];
+        self.window.rootViewController = navView;
     } else {
-        self.window.rootViewController = [[TwitterViewController alloc] init];
+        TwitterViewController *view = [[TwitterViewController alloc] init];
+        UINavigationController *navView = [[UINavigationController alloc] initWithRootViewController:view];
+        self.window.rootViewController = navView;
     }
 }
 

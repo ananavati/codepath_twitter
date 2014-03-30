@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Tweet.h" // tweet model
 #import "TweetTableViewCell.h"
+#import "UINavigationController+SGProgress.h"
+#import "UINavigationBarAlert.h"
 
 @interface TweetListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 

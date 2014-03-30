@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) NSMutableArray *tweets;
 @property (weak, nonatomic) IBOutlet UITableView *tweetListTableView;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -32,6 +33,12 @@
     [self getTweets];
 }
 
+- (void)onRefresh:(id)sender forState:(UIControlState)state {
+    [self.refreshControl endRefreshing];
+    
+    [self getTweets];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -44,6 +51,12 @@
     
     UINib *tweetTableViewCellNib = [UINib nibWithNibName:cellIdentifier bundle:nil];
     [self.tweetListTableView registerNib:tweetTableViewCellNib forCellReuseIdentifier:cellIdentifier];
+    
+    [self.navigationController showSGProgressWithDuration:6];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector( onRefresh:forState: ) forControlEvents:UIControlEventValueChanged];
+    [self.tweetListTableView addSubview:self.refreshControl];
 }
 
 - (void)didReceiveMemoryWarning
@@ -111,23 +124,24 @@
 
 - (void) getTweets
 {
-	if (self.tweets.count == 0) {
-		self.tweets = [[NSMutableArray alloc] init];
-		
-		[Tweet fetchLast:50
-				withSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-					[self appendTweets:responseObject];
-					[self.tweetListTableView reloadData];
-//					[self.refreshControl endRefreshing];
-				}
-				 andFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
-					 NSLog(@"loadTweets failure %@", error);
-				 }];
-	}
-	else {
-//		[self.refreshControl endRefreshing];
-		[self.tweetListTableView reloadData];
-	}
+    [self.navigationController showSGProgressWithDuration:6];
+    
+    [Tweet fetchLast:50
+            withSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                [self.navigationController finishSGProgress];
+                [self appendTweets:responseObject];
+                [self.tweetListTableView reloadData];
+                [self.refreshControl endRefreshing];
+            }
+             andFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                 // throw the network error popup
+                 [self.navigationController finishSGProgress];
+                 [self.refreshControl endRefreshing];
+                 
+                 // show the network error in the navbar alert view
+                 [self.navigationController.navigationBar showAlertWithTitle:@"Network Error"];
+             }];
+
 }
 
 - (void)appendTweets:(id)rawTweets
