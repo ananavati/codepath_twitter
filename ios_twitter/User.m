@@ -42,7 +42,7 @@ NSString * const UserAuthErrorNotification = @"UserAuthErrorNotification";
     });
     
 	if (!user.userId) {
-        [[[Twitter instance] requestManager] GET:@"1.1/account/verify_credentials.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [[Twitter instance] GET:@"1.1/account/verify_credentials.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [user setCurrentUser:responseObject];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"failed to get user");

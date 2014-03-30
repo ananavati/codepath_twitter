@@ -17,6 +17,7 @@ static NSString * const accessTokenKey = @"accessTokenKey";
 @interface Twitter ()
 
 @property (nonatomic, readwrite) BDBOAuth1RequestOperationManager *requestManager;
+@property (nonatomic, strong) BDBOAuthToken *accessToken;
 
 @end
 
@@ -28,7 +29,7 @@ static NSString * const accessTokenKey = @"accessTokenKey";
     static Twitter *instance = nil;
     
     dispatch_once(&once, ^{
-        instance = [[Twitter alloc] init];
+        instance = [[Twitter alloc] initWithBaseURL:TWITTER_BASE_URL consumerKey:TWITTER_CONSUMER_KEY consumerSecret:TWITTER_CONSUMER_SECRET];
     });
     
     return instance;
@@ -40,18 +41,16 @@ static NSString * const accessTokenKey = @"accessTokenKey";
 }
 
 #pragma mark - init
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        self.requestManager = [[BDBOAuth1RequestOperationManager alloc] initWithBaseURL:TWITTER_BASE_URL
-                                                                            consumerKey:TWITTER_CONSUMER_KEY
-                                                                         consumerSecret:TWITTER_CONSUMER_SECRET];
+- (instancetype)initWithBaseURL:(NSURL *)url consumerKey:(NSString *)key consumerSecret:(NSString *)secret {
+    self = [super initWithBaseURL:TWITTER_BASE_URL consumerKey:TWITTER_CONSUMER_KEY consumerSecret:TWITTER_CONSUMER_SECRET];
+    if (self != nil) {
+        NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:accessTokenKey];
+        if (data) {
+            self.accessToken = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        }
     }
-    
     return self;
 }
-
 
 #pragma mark - oauth login
 
@@ -62,8 +61,7 @@ static NSString * const accessTokenKey = @"accessTokenKey";
         NSLog(@"already authorized");
         [User currentUser];
     } else {
-        [self.requestManager.requestSerializer removeAccessToken];
-        [self.requestManager fetchRequestTokenWithPath:@"/oauth/request_token" method:@"POST" callbackURL:[NSURL URLWithString:@"codepath-twitter://request"] scope:nil success:^(BDBOAuthToken *requestToken) {
+        [super fetchRequestTokenWithPath:@"/oauth/request_token" method:@"POST" callbackURL:[NSURL URLWithString:@"codepath-twitter://request"] scope:nil success:^(BDBOAuthToken *requestToken) {
             NSLog(@"got requestToken");
             NSString *authURL = [NSString stringWithFormat:@"https://api.twitter.com/oauth/authorize?oauth_token=%@", requestToken.token];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:authURL]];
@@ -81,12 +79,13 @@ static NSString * const accessTokenKey = @"accessTokenKey";
 		if ([url.host isEqualToString:@"request"])	{
 			NSDictionary *parameters = [NSDictionary dictionaryFromQueryString:url.query];
 			if (parameters[@"oauth_token"] && parameters[@"oauth_verifier"]) {
-				[self.requestManager fetchAccessTokenWithPath:@"/oauth/access_token"
+				[[Twitter instance] fetchAccessTokenWithPath:@"/oauth/access_token"
 													   method:@"POST"
 												 requestToken:[BDBOAuthToken tokenWithQueryString:url.query]
 													  success:^(BDBOAuthToken *accessToken) {
 														  NSLog(@"access token %@", accessToken);
-                                                          [self saveAccessToken:accessToken];
+                                                          [self setAccessToken:accessToken];
+//                                                          [self saveAccessToken:accessToken];
 														  [User currentUser];
                                                           
 														  if (completion) {
@@ -112,7 +111,7 @@ static NSString * const accessTokenKey = @"accessTokenKey";
 	return NO;
 }
 
-- (void)saveAccessToken:(BDBOAuthToken *)accessToken {
+- (void)setAccessToken:(BDBOAuthToken *)accessToken {
     if (accessToken) {
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:accessToken];
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:accessTokenKey];

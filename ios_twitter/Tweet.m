@@ -32,29 +32,28 @@
 
 + (void)fetchLast:(int)limit withSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success andFailure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-	[[[Twitter instance] requestManager] GET:@"1.1/statuses/home_timeline.json"
-                                  parameters:@{@"count": @(limit), @"include_my_retweet": @(YES)}
-                                     success:success
-                                     failure:failure];
+	[[Twitter instance] GET:@"1.1/statuses/home_timeline.json"
+                 parameters:@{@"count": @(limit), @"include_my_retweet": @(YES)}
+                    success:success
+                    failure:failure];
 }
 
 + (Tweet *)reply:(NSString *)status toStatus:(NSString *)originalStatusId withSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success andFailure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-	[[[Twitter instance] requestManager] POST:@"1.1/statuses/update.json"
-											parameters:@{@"status": status,
-														 @"in_reply_to_status_id": originalStatusId}
-											   success:success
-											   failure:failure];
+	[[Twitter instance] POST:@"1.1/statuses/update.json"
+                  parameters:@{@"status": status, @"in_reply_to_status_id": originalStatusId}
+                     success:success
+                     failure:failure];
 	
 	return [[Tweet alloc] initWithStatus:status author:[User currentUser]];
 }
 
 + (Tweet *)update:(NSString *)status withSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success andFailure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-	[[[Twitter instance] requestManager] POST:@"1.1/statuses/update.json"
-											parameters:@{@"status": status}
-											   success:success
-											   failure:failure];
+	[[Twitter instance] POST:@"1.1/statuses/update.json"
+                  parameters:@{@"status": status}
+                     success:success
+                     failure:failure];
     
 	return [[Tweet alloc] initWithStatus:status author:[User currentUser]];
 }
