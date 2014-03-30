@@ -18,6 +18,7 @@ extern NSString *const UserAuthErrorNotification;
 @property int userId;
 @property (strong, nonatomic) NSString *profileUrl;
 @property (strong, nonatomic) NSString *screenName;
+@property (strong, nonatomic) NSString *name;
 
 + (User *)userFromJSON:(NSDictionary *)data;
 + (User *)currentUser;

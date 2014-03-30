@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "Twitter.h"
 #import "User.h"
+#import "MHPrettyDate.h"
 
 @interface Tweet : NSObject
-
-@property (strong, nonatomic) User *author;
 @property (strong, nonatomic) NSString *text;
+@property (strong, nonatomic) NSString *elapsedTime;
+@property (strong, nonatomic) User *author;
+@property (strong, nonatomic) User *retweeter;
 
 - (BOOL)isRetweet;
 

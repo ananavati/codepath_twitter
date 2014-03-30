@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-MHPrettyDate.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SGNavigationProgress.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>533671C9BC4B435D8D09BB1E</key>
+		<key>245AE1F264114D1395E770D5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>91A83844D1844646BFB3C8B1</key>
+		<key>68A316912AB94D3AAC6F2E88</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CC2CF082CE4C41FAB402F623</key>
+		<key>7089EFFA4E524D64B946FFBD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EBB203658C844D2DADF36191</key>
+		<key>96E9C313DF384111AACD465A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B1D27C2C9B3C410A9D6CC886</key>
 		<dict>
 			<key>primary</key>
 			<true/>

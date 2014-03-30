@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_BDBOAuth1Manager 2
 #define COCOAPODS_VERSION_PATCH_BDBOAuth1Manager 0
 
+// MHPrettyDate
+#define COCOAPODS_POD_AVAILABLE_MHPrettyDate
+#define COCOAPODS_VERSION_MAJOR_MHPrettyDate 1
+#define COCOAPODS_VERSION_MINOR_MHPrettyDate 1
+#define COCOAPODS_VERSION_PATCH_MHPrettyDate 1
+
 // SGNavigationProgress
 #define COCOAPODS_POD_AVAILABLE_SGNavigationProgress
 #define COCOAPODS_VERSION_MAJOR_SGNavigationProgress 1

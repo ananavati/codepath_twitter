@@ -12,6 +12,12 @@
 
 @property (strong, nonatomic) NSDate *createdAt;
 @property (strong, nonatomic) NSDictionary *rawData;
+@property (strong, nonatomic) NSString *retweetId;
+
+@property int favoriteCount;
+@property BOOL isFavorite;
+@property int retweetCount;
+@property BOOL isRetweeted;
 
 @end
 
@@ -40,10 +46,32 @@
 	if (self) {
         //		NSLog(@"new tweet with: %@", data);
 		self.rawData = data;
+		NSDictionary *retweet = self.rawData[@"retweeted_status"];
+        
+        if (retweet) {
+			self.retweeter = [User userFromJSON:data[@"user"]];
+			self.author = [User userFromJSON:retweet[@"user"]];
+			self.text = retweet[@"text"];
+			self.createdAt = [self dateFromString:retweet[@"created_at"]];
+		}
+        else
+        {
+            self.author = [User userFromJSON:data[@"user"]];
+            self.text = self.rawData[@"text"];
+            self.createdAt = [self dateFromString:self.rawData[@"created_at"]];
+        }
+        
+        self.elapsedTime = [MHPrettyDate prettyDateFromDate:self.createdAt withFormat:MHPrettyDateShortRelativeTime];
+        
+        self.favoriteCount = (int)[self.rawData[@"favorite_count"] integerValue];
+		self.isFavorite = [self.rawData[@"favorited"] boolValue];
 		
-        self.author = [User userFromJSON:data[@"user"]];
-        self.text = self.rawData[@"text"];
-        self.createdAt = [self dateFromString:self.rawData[@"created_at"]];
+		self.retweetCount = (int)[self.rawData[@"retweet_count"] integerValue];
+		self.isRetweeted = [self.rawData[@"retweeted"] boolValue];
+		
+		if (self.rawData[@"current_user_retweet"]) {
+			self.retweetId = self.rawData[@"current_user_retweet"][@"id_str"];
+		}
 	}
 	
 	return self;
@@ -58,7 +86,7 @@
 
 - (BOOL)isRetweet
 {
-	return false;
+	return !!self.retweeter;
 }
 
 @end

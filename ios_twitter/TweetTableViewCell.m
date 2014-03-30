@@ -7,6 +7,7 @@
 //
 
 #import "TweetTableViewCell.h"
+#import <UIImageView+AFNetworking.h>
 
 @interface TweetTableViewCell ()
 
@@ -33,6 +34,16 @@
     [self setTweet:tweet];
     [self setTag:indexPath.row];
     [self.tweetTextLabel setText:tweet.text];
+    [self.timeStampLabel setText:tweet.elapsedTime];
+    [self.authorNameLabel setText:tweet.author.name];
+    [self.userNameLabel setText:tweet.author.screenName];
+    [self.tweetImageView setImageWithURL:[NSURL URLWithString:tweet.author.profileUrl]];
+    
+    if (tweet.isRetweet) {
+        [self.retweetLabel setText:[NSString stringWithFormat:@"%@ retweeted", tweet.retweeter.name]];
+    } else {
+//        [self.retweetLabel removeFromSuperview];
+    }
 }
 
 

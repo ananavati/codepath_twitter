@@ -68,7 +68,9 @@ NSString * const UserAuthErrorNotification = @"UserAuthErrorNotification";
 {
 	[self setUserId:(int)data[@"id"]];
     [self setProfileUrl:data[@"profile_image_url"]];
-    [self setScreenName:data[@"screen_name"]];
+    [self setScreenName:[NSString stringWithFormat:@"@%@", data[@"screen_name"]]];
+    [self setName:data[@"name"]];
+    [self setProfileUrl:data[@"profile_image_url"]];
 }
 
 @end
