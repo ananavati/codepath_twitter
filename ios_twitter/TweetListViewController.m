@@ -129,9 +129,10 @@
     [Tweet fetchLast:50
             withSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [self.navigationController finishSGProgress];
+                [self.refreshControl endRefreshing];
+                
                 [self appendTweets:responseObject];
                 [self.tweetListTableView reloadData];
-                [self.refreshControl endRefreshing];
             }
              andFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
                  // throw the network error popup
