@@ -24,6 +24,7 @@ static NSString *cellIdentifier = @"TweetTableViewCell";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.title = @"Tweets";
         [self initialize];
     }
     return self;
@@ -52,6 +53,24 @@ static NSString *cellIdentifier = @"TweetTableViewCell";
     
     [self.navigationController showSGProgressWithDuration:6];
     [self addRefreshControl];
+    [self addComposeTweetButtonToNavBar];
+}
+
+- (void) addComposeTweetButtonToNavBar
+{
+    UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStyleDone target:self action:@selector(onComposeButton:)];
+    self.navigationItem.rightBarButtonItem = composeButton;
+}
+
+- (void) onComposeButton:(id)sender
+{
+    ComposeTweetViewController *composeTweetViewController = [[ComposeTweetViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:composeTweetViewController];
+    navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical; // Rises from below
+    
+    composeTweetViewController.delegate = self;
+    
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (void)addRefreshControl
@@ -122,11 +141,26 @@ static NSString *cellIdentifier = @"TweetTableViewCell";
 
 }
 
-- (void)appendTweets:(id)rawTweets
+- (void) appendTweets:(id)rawTweets
 {
 	for (NSDictionary *data in rawTweets) {
 		[self.tweets addObject:[Tweet tweetFromJSON:data]];
 	}
 }
+
+- (void) prependTweet:(Tweet *)tweet
+{
+	[self.tweets insertObject:tweet atIndex:0];
+    
+    [self.tweetListTableView reloadData];
+}
+
+#pragma mark - ComposeTweetViewControllerDelegate
+
+- (void) addTweet:(Tweet *)tweet
+{
+	[self prependTweet:tweet];
+}
+
 
 @end

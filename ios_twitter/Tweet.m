@@ -38,6 +38,27 @@
                                      failure:failure];
 }
 
++ (Tweet *)reply:(NSString *)status toStatus:(NSString *)originalStatusId withSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success andFailure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+	[[[Twitter instance] requestManager] POST:@"1.1/statuses/update.json"
+											parameters:@{@"status": status,
+														 @"in_reply_to_status_id": originalStatusId}
+											   success:success
+											   failure:failure];
+	
+	return [[Tweet alloc] initWithStatus:status author:[User currentUser]];
+}
+
++ (Tweet *)update:(NSString *)status withSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success andFailure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+	[[[Twitter instance] requestManager] POST:@"1.1/statuses/update.json"
+											parameters:@{@"status": status}
+											   success:success
+											   failure:failure];
+    
+	return [[Tweet alloc] initWithStatus:status author:[User currentUser]];
+}
+
 #pragma mark - instance methods
 
 - (Tweet *)initFromJSON:(NSDictionary *)data
@@ -77,6 +98,18 @@
 	return self;
 }
 
+- (Tweet *)initWithStatus:(NSString *)status author:(User *)author
+{
+	self = [super init];
+	if (self) {
+		self.author = author;
+		self.text = status;
+		self.createdAt = [NSDate date];
+	}
+	
+	return self;
+}
+
 - (NSDate *)dateFromString:(NSString *)string
 {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -87,6 +120,11 @@
 - (BOOL)isRetweet
 {
 	return !!self.retweeter;
+}
+
+- (NSString *)tweetId
+{
+	return self.rawData[@"id_str"];
 }
 
 @end

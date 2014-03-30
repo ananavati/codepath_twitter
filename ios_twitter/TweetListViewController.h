@@ -11,7 +11,8 @@
 #import "TweetTableViewCell.h"
 #import "UINavigationController+SGProgress.h"
 #import "UINavigationBarAlert.h"
+#import "ComposeTweetViewController.h"
 
-@interface TweetListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface TweetListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ComposeTweetViewControllerDelegate>
 
 @end

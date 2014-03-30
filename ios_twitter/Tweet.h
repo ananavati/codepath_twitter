@@ -17,9 +17,12 @@
 @property (strong, nonatomic) User *author;
 @property (strong, nonatomic) User *retweeter;
 
+- (NSString *)tweetId;
 - (BOOL)isRetweet;
 
 + (void)fetchLast:(int)limit withSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success andFailure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
++ (Tweet *)reply:(NSString *)status toStatus:(NSString *)originalStatusId withSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success andFailure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
++ (Tweet *)update:(NSString *)status withSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success andFailure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 + (Tweet *)tweetFromJSON:(NSDictionary *)data;
 
