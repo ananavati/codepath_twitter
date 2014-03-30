@@ -56,9 +56,9 @@ static NSString * const accessTokenKey = @"accessTokenKey";
 
 - (void) login
 {
-    
     if ([self isAuthorizedWithAccessToken]) {
         NSLog(@"already authorized");
+        [[NSNotificationCenter defaultCenter] postNotificationName:UserDidLoginNotification object:nil];
         [User currentUser];
     } else {
         [super fetchRequestTokenWithPath:@"/oauth/request_token" method:@"POST" callbackURL:[NSURL URLWithString:@"codepath-twitter://request"] scope:nil success:^(BDBOAuthToken *requestToken) {

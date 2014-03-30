@@ -194,7 +194,7 @@
 
 - (void) renderRootViewController
 {
-	if ([User currentUser]) {
+	if ([User currentUser].userId) {
         TweetListViewController *view = [[TweetListViewController alloc] init];
         UINavigationController *navView = [[UINavigationController alloc] initWithRootViewController:view];
         self.window.rootViewController = navView;
