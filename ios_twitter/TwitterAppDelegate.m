@@ -197,7 +197,7 @@
 	if ([User currentUser]) {
         self.window.rootViewController = [[TweetListViewController alloc] init];
     } else {
-        self.window.rootViewController = [[TweetListViewController alloc] init];
+        self.window.rootViewController = [[TwitterViewController alloc] init];
     }
 }
 
