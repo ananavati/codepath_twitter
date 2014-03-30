@@ -1,19 +1,19 @@
 //
-//  TwitterViewController.m
+//  SignInViewController.m
 //  ios_twitter
 //
-//  Created by Arpan Nanavati on 3/28/14.
+//  Created by Arpan Nanavati on 3/30/14.
 //  Copyright (c) 2014 Arpan Nanavati. All rights reserved.
 //
 
-#import "TwitterViewController.h"
+#import "SignInViewController.h"
 
-@interface TwitterViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@interface SignInViewController ()
+- (IBAction)onLoginButton:(id)sender;
 
 @end
 
-@implementation TwitterViewController
+@implementation SignInViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,11 +36,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma -mark controller actions
 
-- (IBAction)loginButtonTapped:(id)sender
-{
+- (IBAction)onLoginButton:(id)sender {
     [[Twitter instance] login];
 }
-
 @end

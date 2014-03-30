@@ -7,7 +7,7 @@
 //
 
 #import "TwitterAppDelegate.h"
-#import "TwitterViewController.h"
+#import "SignInViewController.h"
 #import "NSDictionary+BDBOAuth1Manager.h"
 #import "Twitter.h"
 #import "UINavigationBarAlert.h"
@@ -40,7 +40,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // initialize the nav bar and the view
-    TwitterViewController *view = [[TwitterViewController alloc] init];
+    SignInViewController *view = [[SignInViewController alloc] init];
     UINavigationController *navView = [[UINavigationController alloc] initWithRootViewController:view];
     self.window.rootViewController = navView;
     
@@ -199,7 +199,7 @@
         UINavigationController *navView = [[UINavigationController alloc] initWithRootViewController:view];
         self.window.rootViewController = navView;
     } else {
-        TwitterViewController *view = [[TwitterViewController alloc] init];
+        SignInViewController *view = [[SignInViewController alloc] init];
         UINavigationController *navView = [[UINavigationController alloc] initWithRootViewController:view];
         self.window.rootViewController = navView;
     }
