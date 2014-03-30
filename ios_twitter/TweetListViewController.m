@@ -18,6 +18,8 @@
 
 @implementation TweetListViewController
 
+static NSString *cellIdentifier = @"TweetTableViewCell";
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -46,14 +48,14 @@
     self.tweetListTableView.delegate = self;
     self.tweetListTableView.dataSource = self;
     
-    // register the table view cell with the table view
-    static NSString *cellIdentifier = @"TweetTableViewCell";
-    
-    UINib *tweetTableViewCellNib = [UINib nibWithNibName:cellIdentifier bundle:nil];
-    [self.tweetListTableView registerNib:tweetTableViewCellNib forCellReuseIdentifier:cellIdentifier];
+    [self.tweetListTableView registerNib:[UINib nibWithNibName:cellIdentifier bundle:nil] forCellReuseIdentifier:cellIdentifier];
     
     [self.navigationController showSGProgressWithDuration:6];
-    
+    [self addRefreshControl];
+}
+
+- (void)addRefreshControl
+{
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector( onRefresh:forState: ) forControlEvents:UIControlEventValueChanged];
     [self.tweetListTableView addSubview:self.refreshControl];
@@ -80,32 +82,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	Tweet *tweet = self.tweets[indexPath.row];
-	UITextView *textView = [[UITextView alloc] init];
-	
-	CGFloat textViewHeight = [self heightForTextView:textView withItem:tweet];
-	CGFloat heightPadding = tweet.isRetweet ? 20 : 0;
-	heightPadding += 25 + 27 + 25; // phew magic numbers lol
-	
-	return textViewHeight + heightPadding;
-}
-
-- (CGFloat)heightForTextView:(UITextView *)textView withItem:(Tweet *)item
-{
-	if (item) {
-		[textView setAttributedText:[[NSAttributedString alloc] initWithString:item.text]];
-	}
-	
-	CGRect screenRect = [[UIScreen mainScreen] bounds];
-	CGFloat width = screenRect.size.width;
-	width -= 84; // magic number
-	
-	textView.dataDetectorTypes = UIDataDetectorTypeLink;
-	CGRect textRect = [textView.text boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
-												  options:NSStringDrawingUsesLineFragmentOrigin
-											   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
-												  context:nil];
-	
-	return textRect.size.height;
+    return [TweetTableViewCell displayHeightForTweet:tweet];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

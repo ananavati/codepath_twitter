@@ -29,6 +29,36 @@
     // Configure the view for the selected state
 }
 
++ (NSInteger)displayHeightForTweet:(Tweet *)tweet
+{
+    UITextView *textView = [[UITextView alloc] init];
+	
+	CGFloat textViewHeight = [self heightForTextView:textView withItem:tweet];
+	CGFloat heightPadding = tweet.isRetweet ? 20 : 0;
+	heightPadding += 22 + 15 + 5; // phew magic numbers lol
+	
+	return textViewHeight + heightPadding;
+}
+
++ (CGFloat)heightForTextView:(UITextView *)textView withItem:(Tweet *)item
+{
+	if (item) {
+		[textView setAttributedText:[[NSAttributedString alloc] initWithString:item.text]];
+	}
+	
+	CGRect screenRect = [[UIScreen mainScreen] bounds];
+	CGFloat width = screenRect.size.width;
+	width -= 84; // magic number
+	
+	textView.dataDetectorTypes = UIDataDetectorTypeLink;
+	CGRect textRect = [textView.text boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
+												  options:NSStringDrawingUsesLineFragmentOrigin
+											   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
+												  context:nil];
+	
+	return textRect.size.height;
+}
+
 - (void)updateWithTweet:(Tweet *)tweet indexPath:(NSIndexPath *)indexPath
 {
     [self setTweet:tweet];
@@ -42,9 +72,8 @@
     if (tweet.isRetweet) {
         [self.retweetLabel setText:[NSString stringWithFormat:@"%@ retweeted", tweet.retweeter.name]];
     } else {
-//        [self.retweetLabel removeFromSuperview];
+        self.retweetLabel.hidden = true;
     }
 }
-
 
 @end

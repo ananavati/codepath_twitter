@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeStampLabel;
 
++ (NSInteger)displayHeightForTweet:(Tweet *)tweet;
+
 - (void)updateWithTweet:(Tweet *)tweet indexPath:(NSIndexPath *)indexPath;
 
 @end
