@@ -141,12 +141,13 @@
 		self.favoriteCount += 1;
         
 		[[Twitter instance] POST:@"1.1/favorites/create.json"
-												parameters:@{@"id": self.tweetId}
-												   success:nil
-												   failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-													   self.favoriteCount -= 1;
-													   self.isFavorite = NO;
-												   }];
+                      parameters:@{@"id": self.tweetId}
+                         success:nil
+                         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                             NSLog(@"addToFavorites error: %@", error.localizedDescription);
+                             self.favoriteCount -= 1;
+                             self.isFavorite = NO;
+                         }];
 	}
 }
 
@@ -157,12 +158,13 @@
 		self.favoriteCount -= 1;
         
 		[[Twitter instance] POST:@"1.1/favorites/destroy.json"
-												parameters:@{@"id": self.tweetId}
-												   success:nil
-												   failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-													   self.favoriteCount += 1;
-													   self.isFavorite = YES;
-												   }];
+                      parameters:@{@"id": self.tweetId}
+                         success:nil
+                         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                             NSLog(@"removeFromFavorites error: %@", error.localizedDescription);
+                             self.favoriteCount += 1;
+                             self.isFavorite = YES;
+                         }];
 	}
 }
 
@@ -174,14 +176,15 @@
 		
 		NSString *url = [NSString stringWithFormat:@"1.1/statuses/retweet/%@.json", self.tweetId];
 		[[Twitter instance] POST:url
-												parameters:nil
-												   success:^(AFHTTPRequestOperation *operation, id responseObject) {
-													   self.retweetId = responseObject[@"id_str"];
-												   }
-												   failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-													   self.isRetweeted = NO;
-													   self.retweetCount -= 1;
-												   }];
+                      parameters:nil
+                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                             self.retweetId = responseObject[@"id_str"];
+                         }
+                         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                             NSLog(@"retweet error: %@", error.localizedDescription);
+                             self.isRetweeted = NO;
+                             self.retweetCount -= 1;
+                         }];
 	}
 }
 
@@ -193,15 +196,15 @@
 		
 		NSString *url = [NSString stringWithFormat:@"1.1/statuses/destroy/%@.json", self.retweetId];
 		[[Twitter instance] POST:url
-												parameters:nil
-												   success:^(AFHTTPRequestOperation *operation, id responseObject) {
-													   self.retweetId = nil;
-												   }
-												   failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-													   NSLog(@"unretweet error: %@", error);
-													   self.isRetweeted = YES;
-													   self.retweetCount += 1;
-												   }];
+                      parameters:nil
+                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                             self.retweetId = nil;
+                         }
+                         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                             NSLog(@"unretweet error: %@", error);
+                             self.isRetweeted = YES;
+                             self.retweetCount += 1;
+                         }];
 	}
 }
 
