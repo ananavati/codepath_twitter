@@ -19,9 +19,11 @@ extern NSString *const UserAuthErrorNotification;
 @property (strong, nonatomic) NSString *profileUrl;
 @property (strong, nonatomic) NSString *screenName;
 @property (strong, nonatomic) NSString *name;
+@property BOOL isLoggedIn;
 
 + (User *)userFromJSON:(NSDictionary *)data;
 + (User *)currentUser;
 - (User *)init:(NSDictionary *)data;
+- (void) logout;
 
 @end

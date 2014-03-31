@@ -13,6 +13,7 @@ NSString * const UserDidLogoutNotification = @"UserDidLogoutNotification";
 NSString * const UserAuthErrorNotification = @"UserAuthErrorNotification";
 
 @implementation User
+
 + (User *)userFromJSON:(NSDictionary *)data
 {
 	static dispatch_once_t once;
@@ -45,7 +46,7 @@ NSString * const UserAuthErrorNotification = @"UserAuthErrorNotification";
         [[Twitter instance] GET:@"1.1/account/verify_credentials.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [user setCurrentUser:responseObject];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"failed to get user");
+            NSLog(@"failed to get user: %@", error.localizedDescription);
         }];
 	}
     
@@ -71,6 +72,13 @@ NSString * const UserAuthErrorNotification = @"UserAuthErrorNotification";
     [self setScreenName:[NSString stringWithFormat:@"@%@", data[@"screen_name"]]];
     [self setName:data[@"name"]];
     [self setProfileUrl:data[@"profile_image_url"]];
+    [self setIsLoggedIn:true];
+}
+
+- (void)logout
+{
+    self.isLoggedIn = false;
+	[[NSNotificationCenter defaultCenter] postNotificationName:UserDidLogoutNotification object:nil];
 }
 
 @end

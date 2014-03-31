@@ -54,12 +54,19 @@ static NSString *cellIdentifier = @"TweetTableViewCell";
     [self.navigationController showSGProgressWithDuration:6];
     [self addRefreshControl];
     [self addComposeTweetButtonToNavBar];
+    [self addLogoutButton];
 }
 
 - (void) addComposeTweetButtonToNavBar
 {
     UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStyleDone target:self action:@selector(onComposeButton:)];
     self.navigationItem.rightBarButtonItem = composeButton;
+}
+
+- (void) addLogoutButton
+{
+    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(onLogoutButton:)];
+    self.navigationItem.leftBarButtonItem = logoutButton;
 }
 
 - (void) onComposeButton:(id)sender
@@ -71,6 +78,11 @@ static NSString *cellIdentifier = @"TweetTableViewCell";
     composeTweetViewController.delegate = self;
     
     [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (void) onLogoutButton:(id)sender
+{
+    [[User currentUser] logout];
 }
 
 - (void)addRefreshControl

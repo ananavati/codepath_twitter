@@ -40,6 +40,11 @@ static NSString * const accessTokenKey = @"accessTokenKey";
     return !![[NSUserDefaults standardUserDefaults] objectForKey:accessTokenKey];
 }
 
++ (BOOL) isAuthorized
+{
+	return [[Twitter instance] isAuthorized];
+}
+
 #pragma mark - init
 - (instancetype)initWithBaseURL:(NSURL *)url consumerKey:(NSString *)key consumerSecret:(NSString *)secret {
     self = [super initWithBaseURL:TWITTER_BASE_URL consumerKey:TWITTER_CONSUMER_KEY consumerSecret:TWITTER_CONSUMER_SECRET];
@@ -56,10 +61,10 @@ static NSString * const accessTokenKey = @"accessTokenKey";
 
 - (void) login
 {
-    if ([self isAuthorizedWithAccessToken]) {
+    if (self.isAuthorized) {
         NSLog(@"already authorized");
+        [User currentUser].isLoggedIn = true;
         [[NSNotificationCenter defaultCenter] postNotificationName:UserDidLoginNotification object:nil];
-        [User currentUser];
     } else {
         [super fetchRequestTokenWithPath:@"/oauth/request_token" method:@"POST" callbackURL:[NSURL URLWithString:@"codepath-twitter://request"] scope:nil success:^(BDBOAuthToken *requestToken) {
             NSLog(@"got requestToken");

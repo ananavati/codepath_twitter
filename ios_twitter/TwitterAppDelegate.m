@@ -194,7 +194,7 @@
 
 - (void) renderRootViewController
 {
-	if ([User currentUser].userId) {
+	if ([User currentUser].isLoggedIn) {
         TweetListViewController *view = [[TweetListViewController alloc] init];
         UINavigationController *navView = [[UINavigationController alloc] initWithRootViewController:view];
         self.window.rootViewController = navView;

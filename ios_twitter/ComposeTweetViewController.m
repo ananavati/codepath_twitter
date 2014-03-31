@@ -123,7 +123,7 @@
         newTweet = [Tweet update:self.tweetText.text withSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@" response ");
         } andFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Error: %@", error.localizedDescription);
+            NSLog(@"Error: %@", error);
         }];
 	}
 	
