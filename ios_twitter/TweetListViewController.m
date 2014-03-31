@@ -109,6 +109,7 @@ static NSString *cellIdentifier = @"TweetTableViewCell";
     [detailsController setTweet:tweet];
     
     [self.navigationController pushViewController:detailsController animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
