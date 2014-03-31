@@ -39,10 +39,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    // initialize the nav bar and the view
-    SignInViewController *view = [[SignInViewController alloc] init];
-    UINavigationController *navView = [[UINavigationController alloc] initWithRootViewController:view];
-    self.window.rootViewController = navView;
+    self.window.rootViewController = [[SignInViewController alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(renderRootViewController)
@@ -51,10 +48,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(renderRootViewController)
 												 name:UserDidLogoutNotification object:nil];
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//											 selector:@selector(renderRootViewController)
-//												 name:UserAuthErrorNotification object:nil];
+
     [self renderRootViewController];
     
     self.window.backgroundColor = [UIColor whiteColor];
@@ -199,9 +193,7 @@
         UINavigationController *navView = [[UINavigationController alloc] initWithRootViewController:view];
         self.window.rootViewController = navView;
     } else {
-        SignInViewController *view = [[SignInViewController alloc] init];
-        UINavigationController *navView = [[UINavigationController alloc] initWithRootViewController:view];
-        self.window.rootViewController = navView;
+        self.window.rootViewController = [[SignInViewController alloc] init];
     }
 }
 

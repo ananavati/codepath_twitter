@@ -19,6 +19,7 @@
 
 - (NSString *)tweetId;
 - (BOOL)isRetweet;
+- (NSString *)displayCreatedAt;
 
 + (void)fetchLast:(int)limit withSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success andFailure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 + (Tweet *)reply:(NSString *)status toStatus:(NSString *)originalStatusId withSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success andFailure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;

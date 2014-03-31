@@ -98,7 +98,18 @@ static NSString *cellIdentifier = @"TweetTableViewCell";
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - Table view
+
+// Tap on table Row
+- (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath: (NSIndexPath *) indexPath
+{
+    TweetDetailsViewController *detailsController = [[TweetDetailsViewController alloc] init];
+    
+    Tweet *tweet = self.tweets[indexPath.row];
+    [detailsController setTweet:tweet];
+    
+    [self.navigationController pushViewController:detailsController animated:YES];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

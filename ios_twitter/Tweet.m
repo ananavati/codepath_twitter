@@ -18,6 +18,8 @@
 @property BOOL isFavorite;
 @property int retweetCount;
 @property BOOL isRetweeted;
+@property NSString *_displayCreatedAt;
+
 
 @end
 
@@ -114,6 +116,17 @@
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
 	return [formatter dateFromString:string];
+}
+
+- (NSString *)displayCreatedAt
+{
+	if (!self._displayCreatedAt) {
+		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+		[formatter setDateFormat:@"M/d/yy, h:mm a"];
+		self._displayCreatedAt = [formatter stringFromDate:self.createdAt];
+	}
+	
+	return self._displayCreatedAt;
 }
 
 - (BOOL)isRetweet

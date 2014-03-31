@@ -35,6 +35,8 @@
 		1797996918E8ABC700116B3B /* ComposeTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1797996718E8ABC700116B3B /* ComposeTweetViewController.xib */; };
 		1797996D18E8DA0C00116B3B /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1797996B18E8DA0C00116B3B /* SignInViewController.m */; };
 		1797996E18E8DA0C00116B3B /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1797996C18E8DA0C00116B3B /* SignInViewController.xib */; };
+		1797997218E91DAA00116B3B /* TweetDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1797997018E91DAA00116B3B /* TweetDetailsViewController.m */; };
+		1797997318E91DAA00116B3B /* TweetDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1797997118E91DAA00116B3B /* TweetDetailsViewController.xib */; };
 		EB5F33B5D13C440E9EE2974C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 946ACE7A4D2A40B1AB9B51CE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +92,9 @@
 		1797996A18E8DA0C00116B3B /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		1797996B18E8DA0C00116B3B /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		1797996C18E8DA0C00116B3B /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
+		1797996F18E91DAA00116B3B /* TweetDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailsViewController.h; sourceTree = "<group>"; };
+		1797997018E91DAA00116B3B /* TweetDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailsViewController.m; sourceTree = "<group>"; };
+		1797997118E91DAA00116B3B /* TweetDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetDetailsViewController.xib; sourceTree = "<group>"; };
 		946ACE7A4D2A40B1AB9B51CE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -210,6 +215,8 @@
 				1797996618E8ABC700116B3B /* ComposeTweetViewController.m */,
 				1797996A18E8DA0C00116B3B /* SignInViewController.h */,
 				1797996B18E8DA0C00116B3B /* SignInViewController.m */,
+				1797996F18E91DAA00116B3B /* TweetDetailsViewController.h */,
+				1797997018E91DAA00116B3B /* TweetDetailsViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -221,6 +228,7 @@
 				1797995818E79BE300116B3B /* TweetListViewController.xib */,
 				1797995D18E79D3900116B3B /* TweetTableViewCell.xib */,
 				1797996718E8ABC700116B3B /* ComposeTweetViewController.xib */,
+				1797997118E91DAA00116B3B /* TweetDetailsViewController.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -339,6 +347,7 @@
 				1797996918E8ABC700116B3B /* ComposeTweetViewController.xib in Resources */,
 				1797991618E69AE600116B3B /* InfoPlist.strings in Resources */,
 				1797996E18E8DA0C00116B3B /* SignInViewController.xib in Resources */,
+				1797997318E91DAA00116B3B /* TweetDetailsViewController.xib in Resources */,
 				1797992118E69AE600116B3B /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +404,7 @@
 				1797991C18E69AE600116B3B /* TwitterAppDelegate.m in Sources */,
 				1797996118E79D4F00116B3B /* TweetTableViewCell.m in Sources */,
 				1797994E18E6AE3F00116B3B /* User.m in Sources */,
+				1797997218E91DAA00116B3B /* TweetDetailsViewController.m in Sources */,
 				1797996D18E8DA0C00116B3B /* SignInViewController.m in Sources */,
 				1797996418E7A03000116B3B /* Tweet.m in Sources */,
 				1797991818E69AE600116B3B /* main.m in Sources */,
