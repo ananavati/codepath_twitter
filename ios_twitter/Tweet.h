@@ -16,10 +16,20 @@
 @property (strong, nonatomic) NSString *elapsedTime;
 @property (strong, nonatomic) User *author;
 @property (strong, nonatomic) User *retweeter;
+@property int favoriteCount;
+@property BOOL isFavorite;
+@property int retweetCount;
+@property BOOL isRetweeted;
 
 - (NSString *)tweetId;
 - (BOOL)isRetweet;
 - (NSString *)displayCreatedAt;
+
+- (void)addToFavorites;
+- (void)removeFromFavorites;
+
+- (void)retweet;
+- (void)unretweet;
 
 + (void)fetchLast:(int)limit withSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success andFailure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 + (Tweet *)reply:(NSString *)status toStatus:(NSString *)originalStatusId withSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success andFailure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
