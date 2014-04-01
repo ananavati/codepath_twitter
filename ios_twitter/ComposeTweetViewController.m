@@ -119,12 +119,7 @@
 		newTweet = [Tweet reply:self.tweetText.text toStatus:self.tweet.tweetId withSuccess:nil andFailure:nil];
 	}
 	else {
-//		newTweet = [Tweet update:self.tweetText.text withSuccess:nil andFailure:nil];
-        newTweet = [Tweet update:self.tweetText.text withSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@" response ");
-        } andFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Error: %@", error);
-        }];
+		newTweet = [Tweet update:self.tweetText.text withSuccess:nil andFailure:nil];
 	}
 	
 	[self.delegate addTweet:newTweet];
