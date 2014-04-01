@@ -14,10 +14,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uRM-cr-cl3">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uRM-cr-cl3">
                     <rect key="frame" x="0.0" y="445" width="320" height="123"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="320" id="4d7-KP-wlb"/>
+                        <constraint firstAttribute="height" constant="123" id="Cb0-SO-edM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <state key="normal" title="Login">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -26,12 +31,22 @@
                         <action selector="onLoginButton:" destination="-1" eventType="touchUpInside" id="jIz-H7-xiy"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="twitter-ios7.png" translatesAutoresizingMaskIntoConstraints="NO" id="4gb-8R-eo0">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitter-ios7.png" translatesAutoresizingMaskIntoConstraints="NO" id="4gb-8R-eo0">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="446"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="320" id="Aht-bE-hnA"/>
+                        <constraint firstAttribute="height" constant="446" id="nTh-14-rEK"/>
+                    </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="4gb-8R-eo0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LK7-uh-R5e"/>
+                <constraint firstAttribute="bottom" secondItem="4gb-8R-eo0" secondAttribute="bottom" constant="122" id="lF4-NL-D5q"/>
+                <constraint firstAttribute="bottom" secondItem="uRM-cr-cl3" secondAttribute="bottom" id="nVm-xa-p8c"/>
+                <constraint firstItem="uRM-cr-cl3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tuL-bQ-8NS"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
