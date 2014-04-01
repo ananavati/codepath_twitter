@@ -40,6 +40,7 @@
 		1797997818E934F700116B3B /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 1797997518E934F700116B3B /* favorite.png */; };
 		1797997918E934F700116B3B /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 1797997618E934F700116B3B /* reply.png */; };
 		1797997A18E934F700116B3B /* retweet.png in Resources */ = {isa = PBXBuildFile; fileRef = 1797997718E934F700116B3B /* retweet.png */; };
+		1797997E18EA8E7C00116B3B /* twitter-ios7.png in Resources */ = {isa = PBXBuildFile; fileRef = 1797997D18EA8E7C00116B3B /* twitter-ios7.png */; };
 		EB5F33B5D13C440E9EE2974C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 946ACE7A4D2A40B1AB9B51CE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +102,7 @@
 		1797997518E934F700116B3B /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite.png; sourceTree = "<group>"; };
 		1797997618E934F700116B3B /* reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply.png; sourceTree = "<group>"; };
 		1797997718E934F700116B3B /* retweet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retweet.png; sourceTree = "<group>"; };
+		1797997D18EA8E7C00116B3B /* twitter-ios7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-ios7.png"; sourceTree = "<group>"; };
 		946ACE7A4D2A40B1AB9B51CE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -277,6 +279,7 @@
 				1797997518E934F700116B3B /* favorite.png */,
 				1797997618E934F700116B3B /* reply.png */,
 				1797997718E934F700116B3B /* retweet.png */,
+				1797997D18EA8E7C00116B3B /* twitter-ios7.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1797997E18EA8E7C00116B3B /* twitter-ios7.png in Resources */,
 				1797995E18E79D3900116B3B /* TweetTableViewCell.xib in Resources */,
 				1797997918E934F700116B3B /* reply.png in Resources */,
 				1797995A18E79BE300116B3B /* TweetListViewController.xib in Resources */,
