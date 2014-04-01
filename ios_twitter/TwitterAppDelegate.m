@@ -183,6 +183,7 @@
     return [self.twitterAdapter authorizationCallbackURL:url onSuccess:^{
         NSLog(@"got access token");
         [User currentUser];
+        [User currentUser].isLoggedIn = TRUE;
         [self renderRootViewController];
     }];
 }
