@@ -35,7 +35,7 @@
 	
 	CGFloat textViewHeight = [self heightForTextView:textView withItem:tweet];
 	CGFloat heightPadding = tweet.isRetweet ? 20 : 0;
-	heightPadding += 22 + 15 + 5; // phew magic numbers lol
+	heightPadding += 22 + 15 + 25; // phew magic numbers lol
 	
 	return textViewHeight + heightPadding;
 }

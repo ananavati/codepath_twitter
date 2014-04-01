@@ -182,6 +182,7 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [self.twitterAdapter authorizationCallbackURL:url onSuccess:^{
         NSLog(@"got access token");
+        [User currentUser];
         [self renderRootViewController];
     }];
 }
