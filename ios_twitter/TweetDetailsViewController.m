@@ -25,6 +25,8 @@
 
 @end
 
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1]
+
 @implementation TweetDetailsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -90,13 +92,13 @@
 - (void)updateFavoriteCount
 {
 	self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
-	self.favoriteCountLabel.textColor = self.tweet.isFavorite ? [UIColor orangeColor] : [UIColor lightGrayColor];
+	self.favoriteCountLabel.textColor = self.tweet.isFavorite ? UIColorFromRGB(0xF39C12) : [UIColor lightGrayColor];
 }
 
 - (void)updateRetweetCount
 {
 	self.retweetCountLabel.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
-	self.retweetCountLabel.textColor = self.tweet.isRetweeted ? [UIColor orangeColor] : [UIColor lightGrayColor];
+	self.retweetCountLabel.textColor = self.tweet.isRetweeted ? UIColorFromRGB(0xF39C12) : [UIColor lightGrayColor];
 }
 
 - (IBAction)onReplyIconButton:(id)sender {
