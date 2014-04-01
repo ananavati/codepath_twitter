@@ -65,7 +65,7 @@ static NSString *cellIdentifier = @"TweetTableViewCell";
 
 - (void) addLogoutButton
 {
-    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(onLogoutButton:)];
+    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStyleDone target:self action:@selector(onLogoutButton:)];
     self.navigationItem.leftBarButtonItem = logoutButton;
 }
 
