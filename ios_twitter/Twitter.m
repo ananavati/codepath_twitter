@@ -90,7 +90,6 @@ static NSString * const accessTokenKey = @"accessTokenKey";
 													  success:^(BDBOAuthToken *accessToken) {
 														  NSLog(@"access token %@", accessToken);
                                                           [self setAccessToken:accessToken];
-//                                                          [self saveAccessToken:accessToken];
 														  [User currentUser];
                                                           
 														  if (completion) {
